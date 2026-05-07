@@ -15,5 +15,13 @@ export const reducer=(state,action)=>{
             item:[]
         };
     }
+
+    if(action.type==="INCREMENT")
+    {
+        return{
+            ...state,
+            item:state.item.map((curItem)=>curItem.id===action.payload ? {...curItem,quantity:curItem.quantity+1} : {...curItem})
+        };
+    }
     return state;
 };
