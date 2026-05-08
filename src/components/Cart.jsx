@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer,useEffect } from 'react'
 import './cart.css'
 import { products } from './products';
 import ContextCart from './ContextCart';
@@ -38,13 +38,18 @@ function Cart() {
     })
   }
 
-  //decrement the item
+  // decrement the item
   const decrement=(id)=>{
     return dispatch({
       type:"DECREMENT",
       payload:id,
     })
   }
+
+  // we will use the useEffect hook to update the data
+  useEffect(()=>{
+    return dispatch({type:"GET_TOTAL"})
+  },[state.item])
 
   return (
     <>
